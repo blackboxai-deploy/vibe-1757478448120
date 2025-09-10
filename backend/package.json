@@ -1,0 +1,39 @@
+{
+  "name": "legal-contracts-backend",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Legal Contracts Management Backend - Strapi application",
+  "scripts": {
+    "build": "strapi build",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "@strapi/strapi": "4.25.9",
+    "@strapi/plugin-users-permissions": "4.25.9",
+    "@strapi/plugin-i18n": "4.25.9",
+    "@strapi/plugin-email": "4.25.9",
+    "@strapi/plugin-upload": "4.25.9",
+    "@strapi/provider-upload-local": "4.25.9",
+    "@strapi/provider-email-nodemailer": "4.25.9",
+    "mysql2": "^3.6.5",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^9.0.1",
+    "mime-types": "^2.1.35",
+    "axios": "^1.6.2"
+  },
+  "author": {
+    "name": "Legal Contracts Team"
+  },
+  "strapi": {
+    "uuid": "a5f8c9e1-7d4b-4c2a-9f1e-8b3d5c7a9f2e"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
