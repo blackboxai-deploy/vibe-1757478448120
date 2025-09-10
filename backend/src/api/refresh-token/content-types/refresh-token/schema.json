@@ -1,0 +1,72 @@
+{
+  "kind": "collectionType",
+  "collectionName": "refresh_tokens",
+  "info": {
+    "singularName": "refresh-token",
+    "pluralName": "refresh-tokens",
+    "displayName": "Refresh Token",
+    "description": "Refresh tokens for extended authentication sessions"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "token": {
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "tokenHash": {
+      "type": "string",
+      "required": true,
+      "maxLength": 64
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "refreshTokens",
+      "required": true
+    },
+    "expiresAt": {
+      "type": "datetime",
+      "required": true
+    },
+    "isRevoked": {
+      "type": "boolean",
+      "default": false
+    },
+    "revokedAt": {
+      "type": "datetime"
+    },
+    "revokedReason": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "deviceInfo": {
+      "type": "json"
+    },
+    "ipAddress": {
+      "type": "string",
+      "maxLength": 45
+    },
+    "userAgent": {
+      "type": "text"
+    },
+    "lastUsedAt": {
+      "type": "datetime"
+    },
+    "usageCount": {
+      "type": "integer",
+      "default": 0
+    },
+    "sessionId": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+}
