@@ -1,0 +1,104 @@
+{
+  "kind": "collectionType",
+  "collectionName": "audit_logs",
+  "info": {
+    "singularName": "audit-log",
+    "pluralName": "audit-logs",
+    "displayName": "Audit Log",
+    "description": "System audit trail for all important events"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "event": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "entityType": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50
+    },
+    "entityId": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "userId": {
+      "type": "biginteger"
+    },
+    "userEmail": {
+      "type": "email"
+    },
+    "ipAddress": {
+      "type": "string",
+      "maxLength": 45
+    },
+    "userAgent": {
+      "type": "text"
+    },
+    "method": {
+      "type": "string",
+      "maxLength": 10
+    },
+    "endpoint": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "statusCode": {
+      "type": "integer"
+    },
+    "responseTime": {
+      "type": "integer"
+    },
+    "timestamp": {
+      "type": "datetime",
+      "required": true
+    },
+    "details": {
+      "type": "json"
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "severity": {
+      "type": "enumeration",
+      "enum": ["info", "warning", "error", "critical"],
+      "default": "info"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "authentication",
+        "authorization", 
+        "crud",
+        "file_operation",
+        "document_operation",
+        "user_management",
+        "system",
+        "security"
+      ],
+      "default": "system"
+    },
+    "isSuccessful": {
+      "type": "boolean",
+      "default": true
+    },
+    "errorMessage": {
+      "type": "text"
+    },
+    "sessionId": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "correlationId": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "tags": {
+      "type": "json"
+    }
+  }
+}
