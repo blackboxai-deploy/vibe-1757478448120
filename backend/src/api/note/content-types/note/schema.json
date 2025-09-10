@@ -1,0 +1,111 @@
+{
+  "kind": "collectionType",
+  "collectionName": "notes",
+  "info": {
+    "singularName": "note",
+    "pluralName": "notes",
+    "displayName": "Note",
+    "description": "Notes and comments for projects, contracts, and documents"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "content": {
+      "type": "text",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["general", "review", "approval", "concern", "reminder", "meeting", "decision"],
+      "default": "general",
+      "required": true
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": ["low", "medium", "high", "urgent"],
+      "default": "medium"
+    },
+    "isPrivate": {
+      "type": "boolean",
+      "default": false
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "authoredNotes"
+    },
+    "project": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::project.project",
+      "inversedBy": "notes"
+    },
+    "contract": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::contract.contract",
+      "inversedBy": "notes"
+    },
+    "document": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::document.document",
+      "inversedBy": "notes"
+    },
+    "parentNote": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::note.note",
+      "inversedBy": "replies"
+    },
+    "replies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::note.note",
+      "mappedBy": "parentNote"
+    },
+    "mentionedUsers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "mentionedInNotes"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "notes"
+    },
+    "dueDate": {
+      "type": "datetime"
+    },
+    "isResolved": {
+      "type": "boolean",
+      "default": false
+    },
+    "resolvedBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "resolvedAt": {
+      "type": "datetime"
+    },
+    "attachments": {
+      "type": "json"
+    },
+    "customAttributes": {
+      "type": "json"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+}
