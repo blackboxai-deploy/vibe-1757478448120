@@ -1,0 +1,95 @@
+{
+  "kind": "collectionType",
+  "collectionName": "document_versions",
+  "info": {
+    "singularName": "document-version",
+    "pluralName": "document-versions",
+    "displayName": "Document Version",
+    "description": "Version history for documents"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "versionNumber": {
+      "type": "string",
+      "required": true,
+      "maxLength": 20
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "description": {
+      "type": "text"
+    },
+    "changeLog": {
+      "type": "text"
+    },
+    "fileName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "fileType": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "fileSize": {
+      "type": "biginteger"
+    },
+    "fileUrl": {
+      "type": "string"
+    },
+    "thumbnailUrl": {
+      "type": "string"
+    },
+    "document": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::document.document",
+      "inversedBy": "versions"
+    },
+    "createdBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "createdDocumentVersions"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["draft", "review", "approved", "archived"],
+      "default": "draft",
+      "required": true
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": false
+    },
+    "approvedBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "approvedAt": {
+      "type": "datetime"
+    },
+    "checksum": {
+      "type": "string",
+      "maxLength": 64
+    },
+    "diffFromPrevious": {
+      "type": "json"
+    },
+    "versionNotes": {
+      "type": "text"
+    },
+    "customAttributes": {
+      "type": "json"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+}
