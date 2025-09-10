@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "description": "Legal Contracts Management Backend - Strapi application",
   "scripts": {
-    "build": "strapi build",
+    "build": "node init && strapi build",
     "develop": "strapi develop",
-    "start": "strapi start",
+    "start": "node init && strapi start",
     "strapi": "strapi",
     "seed": "node scripts/seed.js"
   },
