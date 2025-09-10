@@ -1,0 +1,125 @@
+{
+  "kind": "collectionType",
+  "collectionName": "attribute_definitions",
+  "info": {
+    "singularName": "attribute-definition",
+    "pluralName": "attribute-definitions",
+    "displayName": "Attribute Definition",
+    "description": "Dynamic field definitions for customizing forms and data"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 100
+    },
+    "label": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "text"
+    },
+    "fieldType": {
+      "type": "enumeration",
+      "enum": [
+        "text",
+        "textarea", 
+        "number",
+        "decimal",
+        "boolean",
+        "date",
+        "datetime",
+        "email",
+        "url",
+        "phone",
+        "select",
+        "multiselect",
+        "radio",
+        "checkbox",
+        "file",
+        "image",
+        "json"
+      ],
+      "required": true
+    },
+    "dataType": {
+      "type": "enumeration",
+      "enum": ["string", "number", "boolean", "date", "array", "object"],
+      "required": true
+    },
+    "entityType": {
+      "type": "enumeration",
+      "enum": ["project", "contract", "document", "note", "user"],
+      "required": true
+    },
+    "isRequired": {
+      "type": "boolean",
+      "default": false
+    },
+    "isUnique": {
+      "type": "boolean",
+      "default": false
+    },
+    "isSearchable": {
+      "type": "boolean",
+      "default": true
+    },
+    "isFilterable": {
+      "type": "boolean",
+      "default": true
+    },
+    "defaultValue": {
+      "type": "text"
+    },
+    "validationRules": {
+      "type": "json"
+    },
+    "options": {
+      "type": "json"
+    },
+    "placeholder": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "helpText": {
+      "type": "text"
+    },
+    "displayOrder": {
+      "type": "integer",
+      "default": 0
+    },
+    "groupName": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "permissions": {
+      "type": "json"
+    },
+    "conditionalDisplay": {
+      "type": "json"
+    },
+    "createdBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "createdAttributeDefinitions"
+    },
+    "customAttributes": {
+      "type": "json"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+}
