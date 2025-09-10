@@ -1,0 +1,126 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contracts",
+  "info": {
+    "singularName": "contract",
+    "pluralName": "contracts",
+    "displayName": "Contract",
+    "description": "Legal contracts within projects"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "text"
+    },
+    "contractNumber": {
+      "type": "string",
+      "unique": true,
+      "maxLength": 100
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["service_agreement", "nda", "employment", "vendor", "license", "partnership", "other"],
+      "default": "service_agreement",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["draft", "review", "approved", "signed", "active", "completed", "terminated", "cancelled"],
+      "default": "draft",
+      "required": true
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": ["low", "medium", "high", "urgent"],
+      "default": "medium"
+    },
+    "project": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::project.project",
+      "inversedBy": "contracts"
+    },
+    "assignedTo": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "assignedContracts"
+    },
+    "reviewers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "contractsToReview"
+    },
+    "documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::document.document",
+      "mappedBy": "contract"
+    },
+    "notes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::note.note",
+      "mappedBy": "contract"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "contracts"
+    },
+    "subcategories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::subcategory.subcategory",
+      "inversedBy": "contracts"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "contracts"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "value": {
+      "type": "decimal"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD",
+      "maxLength": 3
+    },
+    "renewalTerms": {
+      "type": "text"
+    },
+    "terminationClause": {
+      "type": "text"
+    },
+    "customAttributes": {
+      "type": "json"
+    },
+    "signatureStatus": {
+      "type": "json"
+    },
+    "complianceChecks": {
+      "type": "json"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+}
