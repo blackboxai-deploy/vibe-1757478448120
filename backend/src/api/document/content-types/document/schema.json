@@ -1,0 +1,136 @@
+{
+  "kind": "collectionType",
+  "collectionName": "documents",
+  "info": {
+    "singularName": "document",
+    "pluralName": "documents",
+    "displayName": "Document",
+    "description": "Legal documents attached to contracts"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "text"
+    },
+    "fileName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "originalFileName": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "fileType": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "fileSize": {
+      "type": "biginteger"
+    },
+    "fileUrl": {
+      "type": "string"
+    },
+    "thumbnailUrl": {
+      "type": "string"
+    },
+    "documentType": {
+      "type": "enumeration",
+      "enum": ["contract", "amendment", "addendum", "exhibit", "schedule", "certificate", "compliance", "other"],
+      "default": "contract",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["draft", "review", "approved", "signed", "archived"],
+      "default": "draft",
+      "required": true
+    },
+    "version": {
+      "type": "string",
+      "default": "1.0",
+      "maxLength": 20
+    },
+    "contract": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::contract.contract",
+      "inversedBy": "documents"
+    },
+    "uploadedBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "uploadedDocuments"
+    },
+    "versions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::document-version.document-version",
+      "mappedBy": "document"
+    },
+    "notes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::note.note",
+      "mappedBy": "document"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "documents"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "documents"
+    },
+    "isTemplate": {
+      "type": "boolean",
+      "default": false
+    },
+    "templateCategory": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "signatureRequired": {
+      "type": "boolean",
+      "default": false
+    },
+    "signatureStatus": {
+      "type": "json"
+    },
+    "signers": {
+      "type": "json"
+    },
+    "expirationDate": {
+      "type": "date"
+    },
+    "customAttributes": {
+      "type": "json"
+    },
+    "checksum": {
+      "type": "string",
+      "maxLength": 64
+    },
+    "encryptionInfo": {
+      "type": "json"
+    },
+    "accessLog": {
+      "type": "json"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+}
